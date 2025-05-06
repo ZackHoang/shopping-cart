@@ -113,9 +113,9 @@ export default function Shop() {
             </div>
             }
             <div>
-                <button value="-" onClick={handlePage}>-</button>
+                <button value="-" disabled={page === 1} onClick={handlePage}>-</button>
                 <p>{page}</p>
-                <button value="+" onClick={handlePage}>+</button>
+                <button value="+" disabled={page === 4} onClick={handlePage}>+</button>
             </div>
         </div>
     )

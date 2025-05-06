@@ -25,6 +25,7 @@ export default function Product() {
             console.log(copyCart); 
             setCart(copyCart); 
         }
+        alert(`${product.title} added into cart!`); 
     }
 
     return (
@@ -37,7 +38,7 @@ export default function Product() {
             </div>
             <div>
                 <h3>${product.price}</h3>
-                <input type="number" value={amount} onChange={(event) => setAmount(event.target.value)}></input>
+                <input type="number" value={amount} min={0} onChange={(event) => setAmount(event.target.value)}></input>
                 <button onClick={handleAddToCart}>Add To Cart</button> 
             </div>
         </div>
