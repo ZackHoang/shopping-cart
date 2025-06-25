@@ -1,0 +1,83 @@
+.container {
+    text-align: center;
+}
+
+.manga {
+    margin-top: 30px;
+}
+
+.mangaInfo2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;  
+}
+
+.mangaInfo2 input {
+    text-align: center;
+    max-width: 30px;
+}
+
+.deleteBtn {
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+.checkOut {
+    margin-bottom: 50px;
+    height: 25%;
+    position: sticky;
+}
+
+@media (min-width: 48em) {
+    .container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        text-align: left;
+    }
+
+    .empty, .items {
+        grid-column-start: 1;
+    }
+
+    .manga {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        align-items: center;
+    }
+
+    .mangaInfo1 {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .mangaInfo2 {
+        flex-direction: row;
+    }
+
+    .title {
+        font-size: 1.5rem
+    }
+
+    .mangaInfo2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; 
+        font-size: 1rem;
+    }
+
+    .checkOut {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 2;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .purchaseBtn {
+        composes: link from "../home/Home.module.css"; 
+    }
+}

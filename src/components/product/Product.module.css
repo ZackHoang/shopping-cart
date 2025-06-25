@@ -1,0 +1,57 @@
+.container {
+    text-align: center;
+}
+
+.price {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 1rem;  
+}
+
+.amount {
+    text-align: center;
+    width: 50px;
+}
+
+.priceTag {
+    margin: 0;
+}
+
+.purchaseBtn {
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 26.5625em) {
+    .cover {
+        width: 100%;
+    }
+}
+
+@media (min-width: 48em) {
+    .container {
+        display: flex; 
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .cover {
+        height: 80vh;
+    }
+
+    .mangaTitle {
+        font-size: 3rem;
+    }
+
+    .priceTag {
+        font-size: 1.5rem;
+    }
+
+    .info {
+        text-align: left;
+    }
+
+    .price {
+        align-items: start;
+    }
+}

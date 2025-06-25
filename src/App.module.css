@@ -1,0 +1,56 @@
+.brand {
+  font-size: 2rem;
+}
+
+.brand:first-letter {
+  color: rgb(201, 46, 70);
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  width: 100%;
+}
+
+.linksContainer {
+  display: flex;
+  gap: 5rem; 
+  list-style-type: none;
+  padding: 0;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 1.5em;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.link:visited {
+  color: black;
+}
+
+@media (max-width: 37.5em) {
+  .navBar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .linksContainer {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+  }
+}
+

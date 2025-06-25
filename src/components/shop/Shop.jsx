@@ -1,45 +1,8 @@
-import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import styles from "./Shop.module.css"
 
 export default function Shop() {
-    const [loading, setLoading] = useState(true); 
-    const [alphabetical, setAlphabetical] = useState("asc"); 
-    const [page, setPage] = useState(1); 
-    const [genreID, setGenreID] = useState([""]); 
-    const [mangas, setMangas] = useState([]); 
-    const {mangasGenres, setProduct} = useOutletContext(); 
-
-    useEffect(() => {
-        const queryURL = `https://api.jikan.moe/v4/manga?sfw&genres=${genreID.join(",")}&page=${page}&start_date=2020-01-01&order_by=title&sort=${alphabetical}`; 
-        console.log(queryURL); 
-        fetch(queryURL)
-        .then((response) => {
-            return response.json(); 
-        })
-        .then((data) => { 
-            const mappedMangas = data.data.map((manga) => ({
-                ...manga, 
-                id: crypto.randomUUID(),
-                price: Math.round(0.5 * manga.title.length), 
-                amount: 1
-            })); 
-            const filteredMangas = []; 
-            for (let i = 0; i < mappedMangas.length; i++) {
-                if (!filteredMangas.some((manga) => manga.title === mappedMangas[i].title)) {
-                    filteredMangas.push(mappedMangas[i]); 
-                }
-            }
-            console.log(filteredMangas); 
-            setMangas(filteredMangas); 
-        })
-        .catch((e) => {
-            console.error(e); 
-        })
-        .finally(() => {
-            setLoading(false); 
-        })        
-
-    }, [alphabetical, page, genreID]);
+    const {loading, setLoading, setAlphabetical, page, setPage, genreID, setGenreID, mangas, mangasGenres, setProduct} = useOutletContext(); 
 
     const handleSort = (e) => {
         setAlphabetical(e.target.value); 
@@ -81,17 +44,17 @@ export default function Shop() {
     } 
 
     return (
-        <div>
-            <form>
-                <h2>Filter</h2>
-                <div>
+        <div className={styles.container}>
+            <form className={styles.filter}>
+                <h2 className={styles.filterHeader}>Filter</h2>
+                <div className={styles.filterChildren}>
                     <h3>Sort</h3>
                     <select name="sort" id="sort" onChange={handleSort}>
                         <option value="asc">Name: A-Z</option>
                         <option value="desc">Name: Z-A</option>
                     </select>
                 </div>
-                <div>
+                <div className={styles.filterChildren}>
                     <h3>Genre</h3>
                     {mangasGenres.map((genre) => {
                         return <div key={genre.mal_id}>
@@ -101,21 +64,21 @@ export default function Shop() {
                     })}
                 </div>
             </form>
-            {loading === true && <h2>Loading...</h2>}
-            {loading === false && <div>
+            {loading === true && <div className={styles.loader}></div>}
+            {loading === false && <div className={styles.mangas}>
             {mangas.map((manga) => {
-                return <Link to="/product" key={manga.id} onClick={() => handleProduct(manga)}>
+                return <Link className={styles.manga} to="/product" key={manga.id} onClick={() => handleProduct(manga)}>
                     <img src={manga.images.jpg.image_url}></img>
+                    <figcaption className={styles.mangaTitle}>{manga.title}</figcaption>
                     <p>{`$${manga.price}`}</p>
-                    <figcaption>{manga.title}</figcaption>
                 </Link>
             })}
             </div>
             }
-            <div>
-                <button value="-" disabled={page === 1} onClick={handlePage}>-</button>
+            <div className={styles.page}>
+                <button className={styles.pageBtn} value="-" disabled={page === 1} onClick={handlePage}>&#60;</button>
                 <p>{page}</p>
-                <button value="+" disabled={page === 4} onClick={handlePage}>+</button>
+                <button className={styles.pageBtn} value="+" disabled={page === 5} onClick={handlePage}>&#62;</button>
             </div>
         </div>
     )

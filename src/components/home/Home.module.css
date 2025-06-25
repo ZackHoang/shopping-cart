@@ -1,0 +1,63 @@
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 85vh;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.5)
+      ), url("../src/assets/manga.jpg");
+      background-size: cover;
+    gap: 2rem;  
+}
+
+.description {
+    margin: 0;
+    color: white;
+    font-size: 5rem;
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 2.5rem;
+}
+
+/* From Uiverse.io by absoluteSTrange */ 
+.link {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 56, 86);
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px;
+    color: hsl(0, 0%, 100%);
+    cursor: pointer;
+  }
+  
+  .link:hover {
+    box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+  }
+  
+  .link:active {
+    background-color: rgb(255, 56, 86);
+    /*50, 168, 80*/
+    box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+  }
+  
+
+@media (max-width: 48em) {
+    .description {
+        font-size: 2rem;
+    }
+
+    .link {
+        font-size: 1rem;
+    }
+}
