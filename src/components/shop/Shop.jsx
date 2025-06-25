@@ -2,11 +2,27 @@ import { Link, useOutletContext } from "react-router-dom";
 import styles from "./Shop.module.css"
 
 export default function Shop() {
-    const {loading, setLoading, setAlphabetical, page, setPage, genreID, setGenreID, mangas, mangasGenres, setProduct} = useOutletContext(); 
+    const {loading, setLoading, setAlphabetical, page, setPage, genreID, setGenreID, mangas, mangasGenres, setMangasGenres, setProduct} = useOutletContext(); 
 
     const handleSort = (e) => {
         setAlphabetical(e.target.value); 
         setLoading(true); 
+    }
+
+    const handleGenreSelected = (e) => {
+        const copyMangasGenres = mangasGenres; 
+        for (let i = 0; i < copyMangasGenres.length; i++) {
+            if (parseInt(e.target.value) === copyMangasGenres[i].mal_id) {
+                if (e.target.checked === true) {
+                    copyMangasGenres[i].selected = true
+                } else {
+                    copyMangasGenres[i].selected = false
+                }
+                break; 
+            }
+        }
+        console.log(copyMangasGenres); 
+        setMangasGenres(copyMangasGenres); 
     }
 
     const handleGenreID = (e) => {
@@ -58,7 +74,7 @@ export default function Shop() {
                     <h3>Genre</h3>
                     {mangasGenres.map((genre) => {
                         return <div key={genre.mal_id}>
-                            <input type="checkbox" id={genre.name} name={genre.name} value={genre.mal_id} onClick={handleGenreID}></input>
+                            <input type="checkbox" id={genre.name} name={genre.name} value={genre.mal_id} checked={genre.selected} onChange={(event) => {handleGenreSelected(event); handleGenreID(event)}}></input>
                             <label htmlFor={genre.name}>{genre.name}</label> 
                         </div>
                     })}

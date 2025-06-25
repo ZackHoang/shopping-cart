@@ -23,8 +23,12 @@ function App() {
         return response.json(); 
     })
     .then((data) => {
-        console.log(data);
-        setMangasGenres(data.data); 
+        const genres = data.data.map((genre) => ({
+          ...genre, 
+          selected: false
+        }));
+        console.log(genres); 
+        setMangasGenres(genres); 
     })
   }, [])
 
@@ -87,7 +91,7 @@ function App() {
         mangas, setMangas,
         cart, setCart,
         product, setProduct,
-        mangasGenres}}></Outlet>
+        mangasGenres, setMangasGenres}}></Outlet>
     </>
   )
 }
